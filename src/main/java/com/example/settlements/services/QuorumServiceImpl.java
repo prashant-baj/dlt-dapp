@@ -64,7 +64,7 @@ public class QuorumServiceImpl implements QuorumService {
 		default:
 			break;
 		}
-		String jpip = "http://52.23.220.35";//"http://35.171.17.213";
+		String jpip = "http://52.23.220.35";
 		String pbip = "http://13.233.78.97";
 		quorum = Quorum.build(new HttpService(jpip+":"+nodePort));
 		ClientTransactionManager transactionManager = 
