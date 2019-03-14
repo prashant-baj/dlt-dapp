@@ -1,0 +1,132 @@
+
+<table width="70%" align="center">
+<tr>
+<td align="left">
+
+<button (click)="getSettlements()">Submissions List</button>
+</td>
+<td>
+<button (click)="onInitiateSettlementSelect()" style="background-color: #008CBA;" >Initiate Settlement (Merchant / Local Acquirer / Aggregator) </button> 
+</td>
+
+<td>
+<button (click)="onProcessSubmission()" style="background-color: yellow;">Process Settlement File (CMS)</button> 
+</td>
+
+<td>
+<button (click)="onApplyFees()" style="background-color: orange;">Apply FX (CB)</button> 
+</td>
+<td>
+<button (click)="onApplyFees()" style="background-color: yellow;">Apply Fees (CMS)</button> 
+</td>
+
+<td>
+<button (click)="onInitiateFunding()" style="background-color: yellow;">Initiate Funding (CMS)</button> 
+</td>
+
+<td>
+<button (click)="onConfirmFundng()" style="background-color: #f44336;">Fund (Treasury)</button>
+</td>
+
+</tr>
+</table>
+
+
+<ng2-smart-table 
+    [settings]="settings" 
+    [source]="settlements"
+	(userRowSelect)="onUserRowSelect($event)"
+	>
+</ng2-smart-table>
+
+<table>
+<tr>
+<td></td>
+</tr>
+</table>
+
+ <div align="center">
+
+   
+      <table width="100%" align="left" style="border: 1px solid black; border-collapse: collapse;">
+        <tr>
+          <th style="border: 1px solid black; border-collapse: collapse;">FileName</th>
+          <th style="border: 1px solid black; border-collapse: collapse;">Virtual Account</th>
+          <th style="border: 1px solid black; border-collapse: collapse;">Sales #</th>
+		  <th style="border: 1px solid black; border-collapse: collapse;">Sales $</th>
+		  <th style="border: 1px solid black; border-collapse: collapse;">Conveyed #</th>
+		  <th style="border: 1px solid black; border-collapse: collapse;">Conveyed $</th>
+		  <th style="border: 1px solid black; border-collapse: collapse;">Return #</th>
+		  <th style="border: 1px solid black; border-collapse: collapse;">Return $</th>
+				
+		 <th style="border: 1px solid black; border-collapse: collapse;">Interchange $</th>
+		  <th style="border: 1px solid black; border-collapse: collapse;">Other $</th>
+		  <th style="border: 1px solid black; border-collapse: collapse;">Adjustments $</th>
+		  <th style="border: 1px solid black; border-collapse: collapse;">Funding $</th>
+		  <th style="border: 1px solid black; border-collapse: collapse;">Funding File</th>
+			<th style="border: 1px solid black; border-collapse: collapse;">Fund Status</th>		  
+        </tr>
+        <tr *ngFor="let data of settlementDetail" style="border: 1px solid black">
+          <td style="border: 1px solid black; border-collapse: collapse;">{{data.fileName}}</td>
+          <td align="left" style="border: 1px solid black; border-collapse: collapse;">{{data.va}}</td>
+          <td style="border: 1px solid black; border-collapse: collapse;">{{data.saleRecordsCount}}</td>
+		  <td style="border: 1px solid black; border-collapse: collapse;">{{data.salesRecordsAmount}}</td>
+		  <td style="border: 1px solid black; border-collapse: collapse;">{{data.authOnlyRecordsCount}}</td>
+		  <td style="border: 1px solid black; border-collapse: collapse;">{{data.authOnlyRecordsAmount}}</td>
+		  <td style="border: 1px solid black; border-collapse: collapse;">{{data.returnRecordsCount}}</td>
+		  <td style="border: 1px solid black; border-collapse: collapse;">{{data.returnRecordsAmount}}</td>
+		 
+		  <td style="border: 1px solid black; border-collapse: collapse;">{{data.interchange}} </td>
+		  <td style="border: 1px solid black; border-collapse: collapse;">{{data.otherFees}} </td>
+		  <td style="border: 1px solid black; border-collapse: collapse;">{{data.adjustments}} </td>
+		  <td style="border: 1px solid black; border-collapse: collapse;">{{data.fundingInitiatedAmount}} </td>
+		  <td style="border: 1px solid black; border-collapse: collapse;">{{data.fundingFileName}} </td>
+			<td style="border: 1px solid black; border-collapse: collapse;">{{data.fundingConfirmed}} </td> 
+        </tr>
+		
+      </table>
+	<!-- 
+	  <p-table [value]="settlementDetail" >
+    <ng-template pTemplate="header">
+        <tr>
+            <th>File Name</th>
+            <th>Virtual Account</th>
+            <th>Sale #</th>
+            <th>Sale $</th>
+			<th>Conveyed #</th>
+		  <th>Conveyed $</th>
+		  <th>Return #</th>
+		  <th>Return $</th>
+				
+		 <th>Interchange $</th>
+		  <th>Other $</th>
+		  <th>Adjustments $</th>
+		  <th>Funding #</th>
+		  <th>Fund File</th>
+			<th>Fund Status</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-a>
+        <tr>
+            <td [ngClass]='new'>{{a.fileName}}</td>
+            <td>{{a.va}}</td>
+            <td>{{a.saleRecordsCount}}</td>
+            <td>{{a.saleRecordsAmount}}</td>
+			 <td>{{a.authOnlyRecordsCount}}</td>
+		  <td>{{a.authOnlyRecordsAmount}}</td>
+		  <td>{{a.returnRecordsCount}}</td>
+		  <td>{{a.returnRecordsAmount}}</td>
+		 
+		  <td > </td>
+		  <td > </td>
+		  <td > </td>
+		  <td > </td>
+		  <td > </td>
+			<td > </td>
+        </tr>
+    </ng-template>
+</p-table>
+	  -->
+	  
+	  
+    </div>
